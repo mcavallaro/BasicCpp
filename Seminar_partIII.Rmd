@@ -1,0 +1,197 @@
+# Part III: Tokens on C++
+
+## Tokens
+
+![**Scheme 2**: Basic Syntax in C/C++](fig/basic_syntax.png)
+
+## Identifiers
+
+Any name element is an identifier. They are basically names given
+by the programmer. It is any variable, function, data definition, etc.
+
+### Rules:
+
+1. Alphabet, digits and underscore are allowed.
+2. They can not start with a digit.
+3. keywords can be used as identifiers.
+4. It is case-sensitive.
+5. Special characters are not permitted.
+
+### Practice:
+
+**EXERCISE 6**: Please, create a new project (p5?) in the workspace and copy the source code of 
+[identifiers.cpp file](src/identifiers.cpp) on to the new main.cpp file. You should have something
+like this:
+
+![](fig/01_identifiers.png)
+
+Please, read carefully the program statements and the comments above them.
+There are several mistakes that should be related with the rules above mentioned.
+Correct them and compile/run the program. Try to answer next questions:
+
+- Is it working? 
+- Why not? 
+- What do the compiler say about them? 
+
+## Keywords and special characters
+
+Here there is the list of keywords:
+
+![](fig/01_keywords.png)
+
+Here is the list of special characters:
+
+![](fig/01_specialchar.png)
+
+They can not be used as identifiers (named variables, functions, etc. )
+
+### Practice:
+
+**EXERCISE 7**: Please, identify the keywords and special characters, using the lists above, in [identifiers.cpp program](src/identifiers.cpp)
+
+## Constants and Types
+
+### Constants
+
+- They are any integer number or float point, such as *8* or *19.27*.
+- They are any single letter between single quotation marks, such as *'\\n'* or *'a'*.
+- They are strings between double quotation marks, such as *"Hello world\n"*.
+
+### Fundamental types
+
+You use them to *define variables* of **type**:
+
+* **void** (empty type): represent nothing(?).
+* **bool** : only can be **true** or **false**;
+* **char** : variable can store characters such as *'a'*, *'b'*, *'\n'*, *'\t'*,etc.
+* **int**  : you can represent integer numbers.
+	- *Modifiers* (Signedness): **signed/unsigned**
+	- *Size*: **sort/long/long long**
+
+![**table 1: Integer properties**](fig/01_integerprop.png)
+
+* Floating point: you can represent real numbers. 
+	- 	**float**: 16 bits real numbers.
+	- 	**double**: 32 bits real numbers.
+	- 	**long double**: 64 bits real numbers.
+
+![**table 2:Range of validity of each type**](fig/02_range.png)
+
+### Transformation between types (casting)
+
+You can transform variables of **certain** types in other variables 
+with different types. The process is as follows:
+
+**int intvar = (int) floatvar** 
+where floatvar is a "**float**" type.
+
+### Practice:
+
+**EXERCISE 8**:Please, create a new project (p6?) in the workspace and copy the source code of 
+[ctetypes.cpp file](src/ctetypes.cpp) on to the new main.cpp file. You should have something
+like this:
+
+![](fig/01_typescast.png)
+
+Please, read carefully the program statements and the comments above them.
+Compile/run the code:
+
+-  Is there any mistake? where? What does the compiler say? 
+-  Change the variable s\_string by i\_number, Compile and run....
+
+## C++ Operators
+
+Let's consider that A = 4 and B = 2:
+
+### Arithmetic Operators:
+
+-------------------------------------------------------------------
+Operator    Description 								   Example 
+---------- --------------------------------------------- ----------
+\+		     Adds two operands or variables           	  A + B = 6
+ 
+\-   	     Subtracts second operand from the first 	  A - B = 2
+ 
+\*		     Multiplies both operands                 	  A * B = 8
+ 
+\/   	     Divides numerator by denominator       	  A / B = 2
+ 
+\%  	     After dividing the numerator by denominator  
+		     remainder will be returned after division    A \% B= 0
+ 
+\+\+  	     Increment operator will increase integer    
+		     value by one                                 A++ = 5  
+ 
+\-\-  	     Increment operator will decrease integer             
+		     value by one                                 A-- = 3  
+--------------------------------------------------------------------
+
+### Relational Operators:
+
+
+---------------------------------------------------------
+Symbol 		Meaning					Example
+-------- ------------------------ -----------------------
+\>			Greater than			A > B returns true
+
+\<			Less than				A < B returns false
+
+\>\=		Greater than equal to	A >= B returns false
+
+\<\=		Less than equal to      A <= B returns false
+
+\=\=    	Equal to 				A == B returns false
+
+\!\=		Not equal to 			A != B returns true
+
+---------------------------------------------------------
+
+### Logical Operators:
+
+
+---------------------------------------------------------------------
+Operator 		Description								 Example
+------------ ------------------------------------------  -------------
+Logical AND		If both operands are non-zero then		 (A && B) is  
+(&&)			only condition becomes true				 false
+Logical OR		If both operands are zero then only		 ( A || B) is
+(\|\|)			condition becomes false					 true
+
+Logical Not     It will reverses the sate of its operand !(A) is true
+(\!)            i.e. true will become false
+
+---------------------------------------------------------------------
+
+### Assignment Operators
+
+-------------------------------------------------------------------
+Operator		Description							Example
+--------------- ----------------------------------- ---------------
+\=				assignment operator 				A = 10
+
++=				Increase a certain number           A += 2 (A = 6)
+
+-=				Decrease a certain number 			A -= 3 (A = 1)
+-------------------------------------------------------------------
+
+### Bitwise Operators.
+
+(out of the scope of this course )
+
+
+### Practice:
+
+**EXERCISE 9**:Please, create a new project (p7?) in the workspace and copy the source code of 
+[operators.cpp file](src/operators.cpp) on to the new main.cpp file. You should have something
+like this:
+
+![](fig/01_operators.png)
+
+Please, read carefully the program statements and the comments above them.
+Compile/run the code. 
+
+<ul>
+  <li><a href="index.html">Home</a></li>
+  <li><a href="seminar_partII.html">Part I</a></li>
+  <li><a href="seminar_partIII.html">Part II</a></li>
+</ul>

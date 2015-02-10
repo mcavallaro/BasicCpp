@@ -1,0 +1,76 @@
+# Part I: Motivation & introduction to C/C++
+
+## What is C/C++?
+
+-   C was created in 1973 by the father of C programming Language and creator of UNIX: 
+
+![**Figure 1**: Dennis Ritche](fig/Dennis.png)
+
+- 	C is a structured language: based in structures, blocks & subroutines: 
+    like for-loops, while, etc.
+- 	C++ is a statically typed, compiled, general-purpose, case-sensitive, free-form programming l	 language that supports procedural, object-oriented, and generic programming.
+- 	C++ development started in 1979 by 
+
+![**Figure 2**: Bjarne Stroustrup](fig/Bjarne.png)	
+
+- 	C++ allows an object orientated style programming of C (OOP):
+	Any compiler of C++ is able to compile C (not viceversa ).
+- 	C produces the fastest code of any structured language: C++ is slightly slower than C.
+-   C/C++ is multi-platform.
+-   C is today the most popular system programming language.
+-   Many important programs are created using C: MySQL, many Linux distributions. 
+-   Several versions: Visual C++, Borland C++, Turbo C++, Standardize C++ (ANSI C++).
+
+## Why to use C/C++?
+
+-   C is **fast**: as fast as code written in assembly language.
+-   C/C++ is **THE system programming language**:
+	+   OS (first versions of Windows and Macintosh, for example)
+	+   Assemblers.
+	+   Print Spoolers (they are programs that performs the printing work).
+	+   Network Drivers (Programs that work with the network hardware ).
+	+   Databases (They have you in Google DBS , Bank DBS, etc.).
+	+   Language interpreters (Matlab, Mathematica, Perl, Python, etc. ).
+	+   Text editors (MS office).
+
+-   C/C++ is used for the most of the programmers in **many areas**:
+-   C++ offers the possibility of **programming with different styles**: C, Fortran,
+	meta-programming, etc. 
+-   C++ has the Standard-Template-Library (STL): It is a group of algorithms programmed 
+    in a very efficient and general style.
+-   C/C++ is used in **research and teaching**: it is clean and easy to explain easy concepts.
+-   C/C++ is **portable**, only need a compiler (installed in most of computers).
+-   OOP allows: 
+	* Facilitate the creation of large projects.
+	* Define abstract data types.
+	* Implementation details are hidden from other modules(interface).
+	* It is easy to maintain and modify existing code.
+	* etc. 
+
+## The compiler 
+
+![**Scheme 1**:Compiler scheme](fig/compiler.png)
+
+## C/C++ portability
+
+- Portability of any language depends on the object code created by the compiler.
+- C/C++ compiler produce machine code which is directly executed by the CPU.
+- C/C++ code is therefore machine dependent and tied to a particular Operative System (OS).
+- We must try to recompile the program before executing program if we change OS.
+- Java and C# are portables since their compiler only generate intermediate code that is 
+  interpreted by the corresponding **Interpreter**. 
+- Matlab, Mathematica, perl, bash... are script languages,
+  where a program (**Interpreter**) is compiled every time that is executed. 
+
+## Conclusion: [C/C++ is everywhere and It has you...](https://www.youtube.com/watch?v=gDadfh0ZdBM)
+
+<video autostart="0" src="fig/The_Matrix_Meeting_Morpheus_Scene.mp4" width="420" height="315" controls type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' frameborder="0" allowfullscreen preload=”none”></video>
+
+### Which pill will you take ?
+
+
+<ul list-style-type="none" margin="0" padding= "0">
+  <li display="inline" float="left"><a href="index.html">Home</a></li>
+  <li display="inline" float="left"><a href="seminar_partII.html">Part II</a></li>
+  <li display="inline" float="left"><a href="seminar_partIII.html">Part III</a></li>
+</ul>
