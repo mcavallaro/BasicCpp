@@ -82,7 +82,6 @@ int main()
    Exercise: Play with operators. Mix types, as for example,
    define char types and use this variables with int types.
    What does it happen? 
-
    */
 
    return 0;
