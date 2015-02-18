@@ -4,20 +4,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <meta name="author" content="Arturo Narros" />
-  <meta name="date" content="2015-11-02" />
-  <title>C/C++ Seminar</title>
+  <title></title>
   <style type="text/css">code{white-space: pre;}</style>
   <link rel="stylesheet" href="/Users/Aurelius/Library/Mobile Documents/com~apple~CloudDocs/iWork/Queen_Mary/Lessons/SeminarC_Cpp/src/john-style.css" type="text/css" />
   <link rel="stylesheet" href="/Users/Aurelius/Library/Mobile Documents/com~apple~CloudDocs/iWork/Queen_Mary/Lessons/SeminarC_Cpp/src/mio.css" type="text/css" />
 </head>
 <body>
-<div id="header">
-<h1 class="title">C/C++ Seminar</h1>
-<h1 class="subtitle">Part III: Tokens on C++</h1>
-<h2 class="author">Arturo Narros</h2>
-<h3 class="date">11/02/2015</h3>
-</div>
 <div id="TOC">
 <ul>
 <li><a href="#part-iv-statements-and-decision-making.">Part IV: Statements and decision making.</a><ul>
@@ -29,9 +21,13 @@
 </ul></li>
 </ul>
 </div>
-<h1 id="part-iv-statements-and-decision-making."><a href="#part-iv-statements-and-decision-making.">Part IV: Statements and decision making.</a></h1>
-<h2 id="introduction"><a href="#introduction">Introduction</a></h2>
+<hr />
+<p>author: Arturo Narros date: 11/02/2015 title: C/C++ Seminar subtitle: “Part IV: Statements and decision making”</p>
+<hr />
+<h1 id="part-iv-statements-and-decision-making.">Part IV: Statements and decision making.</h1>
+<h2 id="introduction">Introduction</h2>
 <p>You will learn:</p>
+<blockquote>
 <ul>
 <li>What it is program <em>statement</em>.</li>
 <li>What it is <em>program flow</em>.</li>
@@ -44,7 +40,8 @@
 <li><strong>switch</strong> is equivalent to <strong>nested If-else</strong>.</li>
 </ol></li>
 </ul>
-<h2 id="statements"><a href="#statements">Statements</a></h2>
+</blockquote>
+<h2 id="statements">Statements</h2>
 <p>C++ statements are individual instructions of a program:</p>
 <ol style="list-style-type: decimal">
 <li>They all finished with a <strong>semicolon</strong> or <strong>;</strong>.</li>
@@ -57,48 +54,39 @@
 <pre>
     int x;
 </pre>
-</div>
-</li>
+</div></li>
 <li><p>Output lines: <a href="seminar_partII.html">std::cout/cout</a>.</p>
 <div class="auto">
 <pre>
     cout << "x is 100";
 </pre>
-</div>
-</li>
+</div></li>
 <li><p>Input lines: <a href="seminar_partII.html">std::cin/cin</a>.</p>
 <div class="auto">
 <pre>
     cin >> x ;
 </pre>
-</div>
-
-
-</li>
+</div></li>
 <li><p><a href="seminar_partIII.html">Casting</a></p>
 <div class="auto">
 <pre>
     int var = (int) floatvar;
 </pre>
-</div>
-</li>
+</div></li>
 <li><p>Algebraical expressions: any line that involves <a href="seminar_partIII.html">algebraical operators</a></p>
 <div class="auto">
 <pre>
     C = A + B ;
 </pre>
-</div>
-</li>
+</div></li>
 <li><p>Logical expressions: any line that involves <a href="seminar_partIII.html">logical operators</a>.</p>
 <div class="auto">
 <pre>
     A > B ;
 </pre>
-</div>
-
-</li>
+</div></li>
 </ul>
-<h2 id="program-flow-and-control-flow-statements."><a href="#program-flow-and-control-flow-statements.">Program Flow and control flow statements.</a></h2>
+<h2 id="program-flow-and-control-flow-statements.">Program Flow and control flow statements.</h2>
 <p>A program can be defined as ordered execution of several computer statements. The execution order is given by the location in the program from the top to the button.</p>
 <p>Control flow statements allows to prevent (Decision making) or repeat (Loop statements) execution of certain ones.</p>
 <p>Here you can see two <em>program flow diagrams</em> from a very basic programs:</p>
@@ -106,7 +94,7 @@
 <img src="fig/program_flow.png" />
 </div>
 <p>Can you interpret them?</p>
-<h2 id="decision-making"><a href="#decision-making">Decision Making</a></h2>
+<h2 id="decision-making">Decision Making</h2>
 <ul>
 <li><p><em>if ( condition ) statement;</em> : In case the condition is false, the statement is not executed.</p>
 <div class="auto">
@@ -114,8 +102,7 @@
 if (m == 18)
     cout << "m is = 18";
 </pre>
-</div>
-</li>
+</div></li>
 <li><p><em>if ( condition ) { statement 1; statement 2;}</em> : If you want to execute several statements under the same condition you need braces (<em>{}</em>). For example:</p>
 <div class="auto">
 <pre>
@@ -125,8 +112,7 @@ if (m == 18)
     cout << m;
 }
 </pre>
-</div>
-</li>
+</div></li>
 <li><p><em>if ( condition ) statement 1; else statement 2;</em> : You want to execute a single statement if condition is <em>true</em>, otherwise statement2 is executed . In case you want to group several statements under the same condition you need keys, for example:</p>
 <div class="auto">
 <pre>
@@ -138,8 +124,7 @@ if (m == 18)
 else
     cout << "m is not 18";
 </pre>
-</div>
-</li>
+</div></li>
 <li><p><em>Nested if conditions</em> : You can combine <em>if(){}else{}</em> structures as for example:</p>
 <div class="auto">
 <pre>
@@ -150,8 +135,7 @@ else if (m < 0)
 else
     cout << "m is 0";
 </pre>
-</div>
-</li>
+</div></li>
 <li><p><em>switch</em> : Similar to <em>nested if-else</em>, is used whenever a variable gets a constant value: Switch syntax is:</p>
 <div class="auto">
 <pre>
@@ -171,7 +155,6 @@ default:
 }
 </pre>
 </div>
-
 <p>An example is:</p>
 <div class="auto">
 <pre>
@@ -185,10 +168,9 @@ switch (x) {
         cout << "x is not 1, 2 nor 3";
 }
 </pre>
-</div>
-</li>
+</div></li>
 </ul>
-<h2 id="practice"><a href="#practice">Practice</a></h2>
+<h2 id="practice">Practice</h2>
 <p><strong>EXERCISE 1</strong>: Please, create a new project (p8?) in the workspace and copy the source code of <a href="src/decision_making.cpp">decision_making.cpp file</a> on to the new main.cpp file:</p>
 <ul>
 <li>Read carefully the statements of the programme.</li>
@@ -226,7 +208,7 @@ switch (x) {
 <li>What will happen if the input in line 32 is not a text but a number?</li>
 <li>How will you change it in order to prevent such case?</li>
 </ul>
-<p><strong>EXERCISE 4</strong>: Please, create a new project (p10?) in the workspace and copy the source code of <a href="src/decision_making4.cpp">decision_making3.cpp file</a> on to the new main.cpp file:</p>
+<p><strong>EXERCISE 4</strong>: Please, create a new project (p10?) in the workspace and copy the source code of <a href="src/decision_making4.cpp">decision_making4.cpp file</a> on to the new main.cpp file:</p>
 <ul>
 <li>Read carefully the statements of the programme.</li>
 <li>Try to understand what is the possible output as a function of the possible input.</li>
@@ -239,7 +221,7 @@ switch (x) {
 <li>Can you be even more specific, for example, in line 77 the answer can be not a number… How can you change the code in order to prevent this case?</li>
 <li>Can you think in other cases when the programme might not work?</li>
 </ul>
-<p><strong>EXERCISE 5</strong>: Please, create a new project (p11?) in the workspace and copy the source code of <a href="src/decision_making5.cpp">decision_making3.cpp file</a> on to the new main.cpp file:</p>
+<p><strong>EXERCISE 5</strong>: Please, create a new project (p11?) in the workspace and copy the source code of <a href="src/decision_making5.cpp">decision_making5.cpp file</a> on to the new main.cpp file:</p>
 <ul>
 <li>Read carefully the statements of the programme.</li>
 <li>Try to understand what is the possible output as a function of the possible input.</li>
@@ -251,18 +233,23 @@ switch (x) {
 <ul>
 <li>Switch-statement can be easily transformed in a nested if-else statement. Can you please do it?</li>
 </ul>
+<p><strong>EXERCISE 6</strong>: Here you can compare the different schemes about decision making of exercises 1,2,3,4 and 5. There are some blocks of the diagrams that are identical but something additional… Imagine you can take such parts and use them in any program that require…. This is the idea of functional in programming.</p>
+<p>In this scheme you have dashed lines to group similar parts of the program, i.e., similar code that has similar <strong>functionality</strong>.</p>
+<div class="figure">
+<img src="fig/sch_dm6.png" />
+</div>
 <p>================================================================================</p>
 <ul>
-  <li>
+<li>
 <a href="index.html">Home</a>
 </li>
-  <li>
+<li>
 <a href="seminar_partI.html">Part I</a>
 </li>
-  <li>
+<li>
 <a href="seminar_partII.html">Part II</a>
 </li>
-  <li>
+<li>
 <a href="seminar_partIII.html">Part III</a>
 </li>
 </ul>
