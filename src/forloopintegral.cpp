@@ -7,7 +7,7 @@ using namespace std;
 
 int main(){
     
-    cout << "This program computes and prints the definite integral of sin(x), x in [0,PI]" << endl;
+    cout << "This program prints the definite integral of sin(x), x in [0,PI]" << endl;
     cout << "Insert the number n of iterations" << endl;
     int n;
     cin >> n ;
