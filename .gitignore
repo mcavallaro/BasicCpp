@@ -1,2 +1,12 @@
 *.exe
 *.out
+*.aux
+*.log
+*.nav
+*.snm
+*.toc
+*.log
+markdown/*pdf
+latex/*pdf
+README.html
+.Rhistory

@@ -1,0 +1,407 @@
+\documentclass[12pt]{beamer}
+
+\usetheme{Oxygen}
+\usepackage{thumbpdf}
+\usepackage{wasysym}
+\DeclareGraphicsRule{*}{mps}{*}{}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage{pgf,pgfarrows,pgfnodes,pgfautomata,pgfheaps,pgfshade}
+\usepackage{verbatim}
+\usepackage{pgfpages}
+\usepackage{listings}
+\usepackage{fix-cm}
+
+
+\let\Tiny=\tiny
+
+\lstset{
+	language=C++,
+	keywordstyle=\bfseries\ttfamily\color[rgb]{0,0,1},
+	identifierstyle=\ttfamily,
+	commentstyle=\color[rgb]{0.133,0.545,0.133}\itshape,
+	stringstyle=\ttfamily\color[rgb]{0.627,0.126,0.941},
+	showstringspaces=false,
+	basicstyle=\small\ttfamily,
+	numberstyle=\footnotesize,
+	numbers=none,
+	stepnumber=1,
+	numbersep=10pt,
+	tabsize=2,
+	breaklines=true,
+	prebreak = \raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
+	breakatwhitespace=false,
+	aboveskip={1.5\baselineskip},
+	columns=fixed,
+	%upquote=true,
+	extendedchars=true,
+	% frame=single,
+	backgroundcolor=\color[rgb]{0.9,0.9,0.9},
+	xleftmargin=2em,
+	xrightmargin=2em,
+}
+
+\addtolength{\arraycolsep}{-3pt}
+
+\definecolor{myblue}{rgb}{0.25, 0.25, 0.75}
+\newcommand{\ct}[1]{\color{myblue} #1\color{black}}% Color text
+\newcommand{\ctt}[1]{\color{red} #1\color{black}}% Color text
+\newcommand{\myref}[1]{\ct{{\small[#1]}}}
+\newcommand{\mycode}[1]{\texttt{\ctt{#1}}}
+
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\om}{\omega}
+\newcommand{\vp}{\varphi}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\D}{\text{d}}
+\newcommand{\I}{\text{i}}
+\newcommand{\E}{\text{e}}
+\newcommand{\paper}{paper\ }
+\newcommand{\lpole}{\times}
+\newcommand{\lsp}{*}
+\newcommand{\mE}{\mathcal{E}}
+\newcommand{\mU}{\mathcal{U}}
+\newcommand{\reals}{\mathbb{R}}
+
+
+\pdfinfo
+{
+  /Title       (C/C++ programming Functions and Pointers)
+  /Creator     (TeX)
+  /Author      (Massimo Cavallaro)
+}
+
+
+\title[C++]{Programming seminar 2015 \\ Session 4: Functions and Pointers}
+%\subtitle{steady state and fluctuations}
+\author{Massimo Cavallaro}
+\institute[QMUL]{School of Mathematical Sciences\\
+Queen Mary, University of London}
+\date[11 March 2015]{11 March 2015}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\section*{}
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents[section=1,hidesubsections]
+\end{frame}
+
+\AtBeginSection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Outline}
+    \tableofcontents[currentsection,hideallsubsections]
+  }
+}
+
+\AtBeginSubsection[]
+{
+  \frame<handout:0>
+  {
+    \frametitle{Outline}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=show/shaded/hide]
+  }
+}
+
+\newcommand<>{\highlighton}[1]{%
+  \alt#2{\structure{#1}}{{#1}}
+}
+
+\newcommand{\icon}[1]{\pgfimage[height=1em]{#1}}
+
+% % % % % 
+% CONTENT STARTS HERE
+%
+
+\section{Calling functions}
+
+\begin{frame}
+\frametitle{Motivation}
+%\framesubtitle{Divide}
+
+Real-world computer programs are (much) larger than those seen so far.
+The strategy to develop, maintain and understand large programs is to use small components.
+A \textit{function} is one of these components. 
+It is a block of code that typically takes parameters and returns a
+value. 
+\end{frame}
+
+
+\defverbatim[colored]\MathList{%
+\begin{lstlisting}
+exp(x)
+cos(x)
+pow(x)
+fabs(x)
+floor(x)
+ceil(x)  
+fmod(x)  
+\end{lstlisting}}
+\defverbatim[colored]\MathHeader{%
+\begin{lstlisting}
+#include <cmath>
+\end{lstlisting}}
+\begin{frame}
+  \frametitle{Prototypes}
+\framesubtitle{Example: Math library functions}
+You are already familiar with some functions, e.g.,
+ \MathList
+These functions perform a precise task and can be inserted in any part of the  program.
+To use them you need:
+ \MathHeader
+But why?
+\end{frame}
+
+\defverbatim[colored]\LstProto{%
+\begin{lstlisting}[emph={condition},emphstyle=\emph]
+double sin(double angle);
+double pow(double base, double exponent);
+void my_function(int a, char b, string c);
+\end{lstlisting}}
+\begin{frame}
+  \frametitle{Prototypes}
+%  \framesubtitle{}
+	Every function --- whether one we've written ourselves or one we're
+	using from somewhere else --- must have a prototype before it can be
+	called. A prototype describes the type of the value (if any) returned
+	by the function, and the types of all its parameters. Here are some
+	example prototypes:
+	\LstProto
+	The prototype should appear at the top level, and before the function
+	is called.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Prototypes}
+%  \framesubtitle{}
+	If we are using a library function, we typically get its prototype by
+	including the appropriate \textbf{header file} for the library (this is
+	what, e.g., \lstinline/\#include <cmath>/ does: it takes the contents of
+	the system header file \lstinline/cmath/, in which are the prototypes
+	for the standard mathematical functions, and adds it to the current
+	file).
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{C++ Standard Library header files}
+  \framesubtitle{Not only mathematical functions...}
+   The following header files contain the prototypes for some of the functions you used in the last tutorials,
+   They contain also definitions of types and constants need by those functions:
+   \begin{itemize}
+    \item \lstinline/\<iostream>/ def. the standard input/output stream objects (\lstinline/std::cout, std::cin/)
+    \item \lstinline/\<cstdlib>/  def. the random number generator ( \lstinline/rand()/ )
+    \item \lstinline/\<cstdio>/   def. the c-style input/output functions ( \lstinline/printf(const char *format, ...)/ )
+    \item \lstinline/\<ctime>/    Contains func. prototypes and types for manipulating the time and date.
+    \item \lstinline/\<cstdarg>/  Support for the variadic function (last slide).
+   \end{itemize}
+   For a complete list see, e.g., \href{http://www.cplusplus.com/reference/}{http://www.cplusplus.com/reference/}
+\end{frame}
+
+
+\defverbatim[colored]\LstCall{%
+\begin{lstlisting}
+double some_sine = sin(100);
+printf("Hello, world!\n");
+int random_num = rand();
+\end{lstlisting}}
+\begin{frame}
+	\frametitle{Calling functions}
+	We call a function by writing its name, followed by brackets containing
+	the (actual) parameters (i.e.\ the values the parameters should take),
+	separated by commas; if there are no parameters, the brackets are left
+	empty. For example:
+	\LstCall
+    See \lstinline/functions.cpp/
+\end{frame}
+
+\section{Writing functions}
+
+\defverbatim[colored]\LstFunction{%
+\begin{lstlisting}
+int some_function(int n){
+	if(n <= 0) return 0;
+	cout << "Input was positive." << endl;
+	return 100 * n;
+}
+\end{lstlisting}}
+\begin{frame}
+	\frametitle{Writing our own functions}
+	The first line of a function is the same as its prototype, except that
+	it doesn't end in a semicolon and must contain the argument names. The \textbf{body} of the function follows
+	--- that is, the code that is to be executed when the function is
+	called. The \lstinline/return/ statement is used to end the function and
+	return a value.
+	\LstFunction
+    See \lstinline/myfirstfunction.cpp/.
+\end{frame}
+
+\defverbatim[colored]\LstScope{%
+\begin{lstlisting}
+int main() {
+	int i;
+	cout << fn() << endl;
+	return 0;
+}
+int fn() {
+	return i * 2;	// ERROR
+}
+\end{lstlisting}}
+\begin{frame}
+	\frametitle{Variables in functions: scope}
+	Variables declared inside a function are said to be \textbf{local} to
+	that function --- that is, they're visible within that function only. So
+	this is an error:
+	\LstScope
+	To make a variable visible to all functions --- we say, \textbf{global}
+	--- define it at the top level, outside any function. But avoid this if
+	possible: use parameters instead.
+    See \lstinline/glocal.cpp/
+\end{frame}
+
+
+
+\defverbatim[colored]\LstParamPass{%
+\begin{lstlisting}
+int main() {
+	int i = 10;
+	mystery(i);
+	cout << "i is " << i << endl;
+	return 0;
+}
+void mystery(int n) {
+	n++;
+	cout << "n is " << n << endl;
+}
+\end{lstlisting}}
+\begin{frame}
+	\frametitle{Parameter-passing in detail}
+	What is the output when running the following?
+	\LstParamPass
+    Copy/Paste this snippet and compile. Hint: It's nothing to do with the names of the variables!
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Parameters are passed by value}
+	When we call a function, \emph{copies of the values} of the actual
+	parameters are made for use by the function, so changes to the
+	parameters within the function have no effect on the caller. This
+	arrangement is known as \textbf{passing by value}.
+
+    We can do more.
+
+    But first...
+    
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Exercises!}
+	\framesubtitle{based on the last tutorial!}
+    \begin{itemize}
+        \item Write a function that prints $n$ times \lstinline/hello world/
+        \item Write a function that calculates and returns the factorial of $n$. See \lstinline/forloop3factorial.cpp/
+        \item Write a function \lstinline/mypow(x,n)/ that calculates and returns $x^n$, $n \in \mathbb{N}$. Compare its speed with those of \lstinline/pow(x,n)/.
+        \item Write a function that calculates and returns the exponential of $x$ with a certain precision $prec$. Make use of \lstinline/mypow(x,n)/.
+             See \lstinline/whileloopexponential.cpp/
+    \end{itemize}
+\end{frame}
+
+
+\section{References and pointers}
+
+\defverbatim[colored]\LstRef{%
+\begin{lstlisting}
+void mystery(int& n){
+	n++;
+	cout << "n is " << n << endl;
+}
+\end{lstlisting}}
+\begin{frame}
+\frametitle{Pass by reference}
+	To get the opposite behaviour, whereby a copy is \emph{not} made, and
+	the function operates on an actual parameter directly, so that changes
+	to that parameter \emph{do} affect the caller, specify that that
+	parameter is a \textbf{reference}, which is achieved by adding an
+	ampersand to the end of the type (both in definition and prototype), e.g.
+	\LstRef
+	This is called \textbf{passing by reference}.
+    How does it works?
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Pass by reference 2}
+
+\begin{block}{Example}
+Write a function that double the value in the caller,
+and returns void. see \lstinline/ref.cpp/
+\end{block}
+
+    Roughly speaking, the ``ampersand'' \lstinline/&/ means ``address of''.
+    In the previous snippet, the address of the variable \lstinline/n/ is copied and passed. That address can't change.
+    But, after, the function works directly on the memory with address \lstinline/&n/.
+\end{frame}
+
+\defverbatim[colored]\AnsiCPoint{%
+\begin{lstlisting}
+#include <stdio.h>
+void modify(int* c){
+    *c = 6;
+}
+int main(){
+    int d = 10;
+    modify(&d);
+    printf("%d\n",d);
+    return 1;
+}
+\end{lstlisting}}
+% //*c dereferenced pointer or Indirection ("object pointed to by a")
+\begin{frame}
+\frametitle{Pass by reference 3}
+\framesubtitle{ANSI C is syntactically more coherent}
+    You can't pass by reference and you must use the \textit{dereference operator} \lstinline/*/ in order to pass an address.
+    \AnsiCPoint
+    In function \lstinline/modify/, \lstinline/c/ is a pointer to an integer while \lstinline/*c/ is an integer.
+    See \lstinline/pointer.c/
+\end{frame}
+
+
+
+\section{Variable number of arguments}
+
+\defverbatim[colored]\VaList{%
+\begin{lstlisting}
+double ArithmeticMean(int num,...){
+    va_list valist; //declaration
+    double sum = 0.0;
+    int i;
+    va_start(valist, num); //initialization of valist
+    for (i = 0; i < num; i++)
+       sum += va_arg(valist, int);   //access
+    va_end(valist);
+    return sum/num;
+}
+\end{lstlisting}}
+\begin{frame}
+\frametitle{Variable number of arguments}
+If we include the header \lstinline/cstdarg/, we have access to some useful functions that allow us to
+define function with a variable number of arguments. See \lstinline/variadic.cpp/.
+
+
+\VaList
+
+
+\end{frame}
+
+
+
+\end{document}

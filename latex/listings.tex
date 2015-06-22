@@ -1,0 +1,192 @@
+\defverbatim[colored]\LstIfElse{%
+\begin{lstlisting}
+if(cond1)
+	{/* Runs iff cond1 true */}
+else if(cond2)
+	{/* Runs iff cond1 false and cond2 true */}
+// Maybe more else-ifs, and maybe finally:
+else
+	{/* Runs if all above conditions false */}
+// Code here is always run.
+// ...
+\end{lstlisting}}
+
+\defverbatim[colored]\LstDoWhile{%
+\begin{lstlisting}
+do{
+	/* Code here is repeated while condition is  true (but will always run at least once) */
+} while(condition);
+\end{lstlisting}}
+
+\defverbatim[colored]\LstDoWhileLine{%
+\begin{lstlisting}
+do{
+	//Statements
+} while(condition);
+\end{lstlisting}}
+
+
+
+\defverbatim[colored]\LstSwitch{
+\begin{lstlisting}
+switch(expression)
+{
+case VALUE1:
+	// ... code ...
+	break;
+case VALUE2:
+	// ... code ...
+	break;
+
+	// Maybe more cases, and optionally:
+
+default:
+	// ... code for when no cases match ...
+	break;
+}
+\end{lstlisting}
+}
+\defverbatim[colored]\LstWhile{%
+\begin{lstlisting}
+while(condition){
+	/* Code here is repeated while condition is true (and will never run at all if condition is false to start with).*/
+}
+\end{lstlisting}}
+
+\defverbatim[colored]\LstWhileLine{%
+\begin{lstlisting}
+while(condition){ /*code block*/}
+\end{lstlisting}}
+
+\defverbatim[colored]\LstDoWhileMontecarloOne{%
+\begin{lstlisting}
+confidence_level = 0.1;
+do{
+    x=(double)rand()/RAND_MAX*(xmax-xmin)+xmin;
+    y=sin(x);
+    n++;
+    sum=sum+y;
+    Q_n=sum/n*(xmax-xmin);
+    tmp=tmp+(y-mean)*(y-mean);
+    rel_error=sqrt(tmp)/n*(xmax-xmin);
+}while(rel_error>confidence_level);
+\end{lstlisting}
+}
+
+\defverbatim[colored]\LstDoWhileMontecarloTwo{%
+\begin{lstlisting}
+confidence_level=0.01;
+do{
+    x=(double)rand()/RAND_MAX*(xmax-xmin)+xmin;
+    y=(double)rand()/RAND_MAX;
+    if (y<sin(x)) k++;
+    n++;
+    I=(double)k/n*(xmax-xmin);
+    tmp=tmp+(1-mean)*(1-mean);
+    rel_error=sqrt(tmp)/n*(xmax - xmin);
+}while(rel_error>confidence_level);
+\end{lstlisting}
+}
+
+\defverbatim[colored]\LstFor{%
+\begin{lstlisting}
+for(Statement1; Condition; Statement2)
+{/* Code block here is repeated while Condition is true.*/}
+\end{lstlisting}}
+
+\defverbatim[colored]\LstForBlackboard{%
+\begin{lstlisting}
+int count;
+for(count=1; count<=500; count++){
+    cout<<"I will not throw paper airplanes in class"<<endl;
+}
+\end{lstlisting}}
+
+\defverbatim[colored]\LstForLine{%
+\begin{lstlisting}
+for(Statement1; Condition; Statement2){ //Statements
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstTrapezium{%
+\begin{lstlisting}
+sum = sin(from) + sin(to);
+for(int i = 1;i < n;i++) {
+    sum += 2.0*sin(from + i * h);
+}
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstRectangle{%
+\begin{lstlisting}
+double h = (to-from)/(double)n;
+for(x=from; x <= (to-h); x += h){
+    sum += sin(x+h/2.0);
+}
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstLift{%
+\begin{lstlisting}
+sum = sin(from) + sin(to);
+for(int i = 1;i < n;i++) {
+    sum += 2.0*sin(from + i * h);
+}
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstFibo{%
+\begin{lstlisting}
+    int fib1=0; 
+    int fib2=1;
+    int fib=fib1+fib2;
+    for (int i=0; i<=n; i++){
+        cout<<i<<" "<<fib<<endl;
+        fib=fib1+fib2;
+        fib1=fib2;
+        fib2=fib;
+    }
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstFactorial{%
+\begin{lstlisting}
+	int n, factorial;
+	cout<<"Enter an integer: ";
+	cin>>n;
+	factorial=n;//init
+	for(int i=n-1;i>1;i--)
+		factorial *= i;
+	cout<<"The factorial of "<<n<<" is "<<factorial<<"."<<endl;
+\end{lstlisting}}
+
+
+\defverbatim[colored]\LstNestedGoto{%
+\begin{lstlisting}
+int i,j,v;
+for(i=1,v=1; i<=8; i+=3){
+    for(j=3; j<6; j++){
+        cout<<i<<" "<<j<<endl;
+        cin>>v;
+        if(v==0){
+            goto point;
+        }
+    }
+}
+point: //continue from here;
+\end{lstlisting}
+}
+
+\defverbatim[colored]\LstNestedStructured{%
+\begin{lstlisting}
+for(i=1, stop=false; i<=8&&stop==false; i+=3){
+    for(j=3; j<6&&stop==false; j++) {
+        cout<<i<<" "<<j<<endl;
+        cin>>v;
+        if(v == 0){
+            stop=true;
+        }
+    }
+}
+//continue from here
+\end{lstlisting}}
